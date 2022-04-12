@@ -1,0 +1,17 @@
+//install php8//
+docker run -d --link mydb:db --name myphp8 -p 80:80 -v C:\Users\PC104-08\Documents\docker:/var/www/html php:8-apache
+
+//install mariadb//
+docker run -d --name mydb --env MARIADB_ROOT_PASSWORD=root -p 3306:3306 mariadb:latest
+
+//install adminer - management of db in php//
+docker run -d --link mydb:db --name myadmin -p 8080:8080 adminer
+
+
+//enter serveur myphp8//
+docker exec -it myphp8 bash
+    //update system before installing extensions//
+    > apt-get update
+    //install pdo mysql//
+    > docker-php-ext-install pdo pdo_mysql
+
